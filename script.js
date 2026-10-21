@@ -32,3 +32,53 @@ function clickTile(r, c) {
       }
     }
   }
+
+  function isSolved() {
+    let n = 1;
+    for (let r = 1; r <= 4; r++)
+      for (let c = 1; c <= 4; c++)
+        if (cell(r, c).className !== "tile" + n++) return false;
+    return true;
+  }
+  
+  function win() {
+    if (confirm("Congratulations! You solved it!\nTime: " + time +
+                " seconds\nMoves: " + moves + "\n\nWould you like to play again?")) {
+      newGame();
+    }
+  }
+
+  function resetBoard() {
+    let n = 1;
+    for (let r = 1; r <= 4; r++)
+      for (let c = 1; c <= 4; c++)
+        cell(r, c).className = "tile" + n++;
+  }
+  
+  function startGame() {
+    moves = 0; time = 0; gameOver = false;
+    updateStats();
+    clearInterval(timer);
+    timer = setInterval(() => { time++; updateStats(); }, 1000);
+  }
+
+  function newGame() {
+    resetBoard();
+    let er = 4, ec = 4; // where the empty slot is
+    for (let i = 0; i < 500; i++) {
+      const options = DIRS.filter(([dr, dc]) => inBounds(er + dr, ec + dc));
+      const [dr, dc] = options[Math.floor(Math.random() * options.length)];
+      swapTiles(cell(er, ec), cell(er + dr, ec + dc));
+      er += dr; ec += dc;
+    }
+    if (isSolved()) return newGame(); // very unlikely, but just in case
+    startGame();
+  }
+
+  function simpleGame() {
+    resetBoard();
+    swapTiles(cell(4, 3), cell(4, 4));
+    startGame();
+  }
+  
+  window.onload = newGame; // board starts scrambled (requirement 1)
