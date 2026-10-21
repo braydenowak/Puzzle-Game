@@ -14,3 +14,21 @@ function updateStats() {
   document.getElementById("moves").textContent = moves;
   document.getElementById("time").textContent = time;
 }
+
+function clickTile(r, c) {
+    if (gameOver || cell(r, c).className === "tile16") return;
+    for (const [dr, dc] of DIRS) {
+      const nr = r + dr, nc = c + dc;
+      if (inBounds(nr, nc) && cell(nr, nc).className === "tile16") {
+        swapTiles(cell(r, c), cell(nr, nc));
+        moves++;
+        updateStats();
+        if (isSolved()) {
+          gameOver = true;
+          clearInterval(timer);
+          setTimeout(win, 500); // delay so the last tile shows before the popup
+        }
+        return;
+      }
+    }
+  }
