@@ -1,0 +1,26 @@
+body { font-family: Arial, sans-serif; text-align: center; }
+#board { margin: 20px auto; border-collapse: collapse; border: 3px solid #333; }
+#board td {
+  width: 90px; height: 90px; padding: 0;
+  border: 1px solid #fff;
+  background-image: url("puzzle.png");
+  cursor: pointer;
+}
+button { padding: 8px 16px; margin: 0 6px; font-size: 16px; cursor: pointer; }
+
+.tile1  { background-position: 0 0; }
+.tile2  { background-position: -90px 0; }
+.tile3  { background-position: -180px 0; }
+.tile4  { background-position: -270px 0; }
+.tile5  { background-position: 0 -90px; }
+.tile6  { background-position: -90px -90px; }
+.tile7  { background-position: -180px -90px; }
+.tile8  { background-position: -270px -90px; }
+.tile9  { background-position: 0 -180px; }
+.tile10 { background-position: -90px -180px; }
+.tile11 { background-position: -180px -180px; }
+.tile12 { background-position: -270px -180px; }
+.tile13 { background-position: 0 -270px; }
+.tile14 { background-position: -90px -270px; }
+.tile15 { background-position: -180px -270px; }
+.tile16 { background: white; cursor: default; }
