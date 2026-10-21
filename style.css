@@ -23,4 +23,4 @@ button { padding: 8px 16px; margin: 0 6px; font-size: 16px; cursor: pointer; }
 .tile13 { background-position: 0 -270px; }
 .tile14 { background-position: -90px -270px; }
 .tile15 { background-position: -180px -270px; }
-.tile16 { background: white; cursor: default; }
+#board td.tile16 { background: white; cursor: default; }
